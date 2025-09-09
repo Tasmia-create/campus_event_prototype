@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrations for {{ event[1] }}</title>
+</head>
+<body>
+    <h1>Registrations for "{{ event[1] }}"</h1>
+
+    {% if students %}
+        <ul>
+            {% for student in students %}
+                <li>{{ student[0] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No students have registered yet.</p>
+    {% endif %}
+
+    <br>
+    <a href="/event/{{ event[0] }}">Back to Event Details</a>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Registrations Report{% endblock %}
+
+{% block content %}
+<h2>Total Registrations per Event</h2>
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Event Title</th>
+            <th>Total Registrations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event, count in data %}
+        <tr>
+            <td>{{ event }}</td>
+            <td>{{ count }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

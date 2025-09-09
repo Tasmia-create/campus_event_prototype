@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Top Students Report{% endblock %}
+
+{% block content %}
+<h2>Top 3 Most Active Students</h2>
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Total Attendance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for name, total in data %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

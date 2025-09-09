@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}View Attendance{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+  <h3 class="mb-3">Attendance List</h3>
+  {% if attendance_list %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for att in attendance_list %}
+      <tr>
+        <td>{{ att[0] }}</td>
+        <td>
+          {% if att[1] == 'Present' %}
+            <span class="badge bg-success">Present</span>
+          {% else %}
+            <span class="badge bg-danger">Absent</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>No attendance records found.</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Attendance Report{% endblock %}
+
+{% block content %}
+<h2>Attendance Percentage per Event</h2>
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Event Title</th>
+            <th>Attendance Percentage (%)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event, percentage in data %}
+        <tr>
+            <td>{{ event }}</td>
+            <!-- Use default(0) to handle None values -->
+            <td>{{ percentage|default(0)|round(2) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Event Popularity Report{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Event Popularity Report</h2>
+
+{% if report %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Event</th>
+            <th>Total Registrations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in report %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="text-center">No events found.</p>
+{% endif %}
+{% endblock %}

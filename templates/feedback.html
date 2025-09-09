@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+  <h3 class="mb-3">Submit Feedback</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Select Student</label>
+      <select name="student_id" class="form-select" required>
+        {% for student in students %}
+          <option value="{{ student[0] }}">{{ student[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Rating (1-5)</label>
+      <input type="number" name="rating" min="1" max="5" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane"></i> Submit</button>
+  </form>
+</div>
+{% endblock %}

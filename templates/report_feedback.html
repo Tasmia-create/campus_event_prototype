@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Feedback Report{% endblock %}
+
+{% block content %}
+<h2>Average Feedback per Event</h2>
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Event Title</th>
+            <th>Average Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event, avg_rating in data %}
+        <tr>
+            <td>{{ event }}</td>
+            <td>{{ avg_rating|default(0)|round(2) }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

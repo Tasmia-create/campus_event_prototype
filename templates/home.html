@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Campus Events{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Headings */
+    h2 { 
+        color: #2c3e50; /* soft dark blue */
+        font-weight: 700; 
+    }
+
+    /* Cards */
+    .card { 
+        background-color: #ffffff; /* white card */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.08); 
+        transition: transform 0.3s; 
+    }
+    .card:hover { 
+        transform: translateY(-5px); 
+    }
+    .card-header { 
+        background-color: #3498db; /* soft blue */
+        color: #ffffff; 
+        font-weight: 600; 
+    }
+
+    /* Buttons */
+    .btn-action {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #1abc9c; /* soft teal */
+        color: #fff !important;
+        font-weight: 500;
+        text-decoration: none;
+        text-align: center;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    .btn-action:hover {
+        background-color: #16a085; /* darker teal on hover */
+        box-shadow: 0 5px 12px rgba(0,0,0,0.18);
+        transform: translateY(-2px);
+    }
+    .btn-action:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    }
+
+    /* Report buttons */
+    .btn-report {
+        margin: 5px 0;
+        font-weight: 600;
+        color: #fff !important;
+        border: none;
+        transition: 0.3s;
+    }
+    .btn-report-registrations { background-color: #3498db; } /* blue */
+    .btn-report-registrations:hover { background-color: #2980b9; }
+
+    .btn-report-attendance { background-color: #1abc9c; } /* teal */
+    .btn-report-attendance:hover { background-color: #16a085; }
+
+    .btn-report-feedback { background-color: #f39c12; } /* orange */
+    .btn-report-feedback:hover { background-color: #d35400; }
+
+    .btn-report-top { background-color: #9b59b6; } /* purple */
+    .btn-report-top:hover { background-color: #8e44ad; }
+
+    /* Body background */
+    body {
+        background-color: #f4f6f7; /* very light gray */
+        color: #2c3e50;
+    }
+
+    /* Alerts */
+    .alert-warning {
+        background-color: #fff8e1;
+        color: #8e6e00;
+        border: 1px solid #ffe57f;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center mb-4">Upcoming Events</h2>
+
+{% if events %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for event in events %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header">
+                    {{ event[1] }}
+                </div>
+                <div class="card-body">
+                    <p><strong>Date:</strong> {{ event[3] }}</p>
+                    <p><strong>Type:</strong> {{ event[2] }}</p>
+                </div>
+                <div class="card-footer d-grid gap-2">
+                    <a href="{{ url_for('event_detail', event_id=event[0]) }}" class="btn-action rounded-pill">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-warning text-center">No upcoming events.</div>
+{% endif %}
+
+<!-- Reports Section -->
+<h2 class="text-center mt-5 mb-4">Reports</h2>
+<div class="row row-cols-1 row-cols-md-2 g-3 justify-content-center">
+    <div class="col-md-3">
+        <a href="{{ url_for('report_registrations') }}" class="btn btn-report btn-report-registrations w-100">Registrations Report</a>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ url_for('report_attendance') }}" class="btn btn-report btn-report-attendance w-100">Attendance Report</a>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ url_for('report_feedback') }}" class="btn btn-report btn-report-feedback w-100">Feedback Report</a>
+    </div>
+    <div class="col-md-3">
+        <a href="{{ url_for('report_top_students') }}" class="btn btn-report btn-report-top w-100">Top 3 Students</a>
+    </div>
+</div>
+
+{% endblock %}

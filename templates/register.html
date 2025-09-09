@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+  <h3 class="mb-3">Register for Event</h3>
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Your Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Select Event</label>
+      <select name="event_id" class="form-select" required>
+        {% for event in events %}
+          <option value="{{ event[0] }}" {% if selected_event_id == event[0] %}selected{% endif %}>{{ event[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
+  </form>
+</div>
+{% endblock %}

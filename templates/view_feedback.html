@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}View Feedback{% endblock %}
+
+{% block content %}
+<div class="card shadow p-4">
+  <h3 class="mb-3">Feedbacks</h3>
+  {% if feedbacks %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for fb in feedbacks %}
+      <tr>
+        <td>{{ fb[0] }}</td>
+        <td>{{ fb[1] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>No feedback available.</p>
+  {% endif %}
+</div>
+{% endblock %}
